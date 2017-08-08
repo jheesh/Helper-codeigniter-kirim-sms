@@ -9,9 +9,7 @@
 */
 function __construct(){
 		
-		//$this->CI->load->library('session');
-		//$this->user_id=$this->CI->session->userdata("user_id");
-		//ignore_user_abort(TRUE);
+		
 		
 	}	
 function kirim_sms($nohp, $message, $return = '0')
