@@ -7,11 +7,31 @@
  * terimakasih
 
 */
+function __construct(){
+		
+		//$this->CI->load->library('session');
+		//$this->user_id=$this->CI->session->userdata("user_id");
+		//ignore_user_abort(TRUE);
+		
+	}	
 function kirim_sms($nohp, $message, $return = '0')
 {
-	$smsgatewayurl='https://reguler.zenziva.net';
-	$userkey='';//user key yang anda dapat dari zenziva
-	$passkey='';//passkey yang anda dapat di zenziva
+		$CI =& get_instance();
+		$CI->load->database();
+		$CI->db->select('*');
+		$CI->db->from('api');
+		$query=$CI->db->get();
+		$data=$query->result_array();
+		foreach($data as $info)
+		{	
+		
+			$userkey=$info['userkey'];
+			$passkey=$info['passkey'];
+			
+		}
+	$smsgatewayurl='https://reguler.zenziva.net/';
+	$userkey=$info['userkey'];
+	$passkey=$info['passkey'];
 	$message=urlencode($message);
 	$elementapi='/apps/smsapi.php';
 	$parameterapi=$elementapi.'?userkey='.$userkey.'&passkey='.$passkey.'&nohp='.$nohp.'&pesan='.$message;
